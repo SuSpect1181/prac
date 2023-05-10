@@ -1,0 +1,780 @@
+SlipNo.1
+Write an Android Programto demonstrate Activity life Cycle
+Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
+tools:context=".MainActivity">
+<TextView
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hello World!" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+Mainactivity.java
+package com.example.lifecycleofactivity;
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+public class MainActivity extends Activity {
+@Override
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+Log.d("lifecycle","onCreate invoked");
+}
+@Override
+protected void onStart(){
+super.onStart();
+Log.d("lifecycle","onStartinvoked");
+}
+@Override
+protected void onResume(){
+super.onResume();
+Log.d("lifecycle","onResume invoked");
+}
+@Override
+protected void onPause(){
+super.onPause();
+Log.d("lifecycle","onPause invoked");
+}
+@Override
+protected void onStop(){
+super.onStop();
+Log.d("lifecycle","onStop invoked");
+}
+@Override
+protected void onRestart(){
+super.onRestart();
+Log.d("lifecycle","onRestartinvoked");
+}
+@Override
+protected void onDestroy(){
+super.onDestroy();
+Log.d("lifecycle","onDestroy invoked");
+}
+}
+SlipNo.2/19
+Create an Android Application that will change color ofthe screen and change thefont
+size oftext view using xml. Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@color/design_default_color_secondary"
+tools:context=".MainActivity">
+<TextView
+android:id="@+id/textView1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="I AM HUGE" android:textStyle="bold" android:fontFamily="sans-serif-smallcaps" android:layout_centerInParent="true" android:textSize="64sp" />
+<TextView
+android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@id/textView1" android:layout_marginBottom="10dp" android:text="I AM SMALL" android:fontFamily="serif-monospace" android:layout_centerInParent="true" android:textSize="36sp" />
+<TextView
+android:id="@+id/textView3"
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/textView2" android:layout_marginBottom="10dp" android:text="I AM TINY" android:background="#FFFF00" android:textColor="@color/design_default_color_primary_variant" android:fontFamily="serif-monospace" android:layout_centerInParent="true" android:textSize="24sp" />
+</RelativeLayout>
+Mainactivity.java
+package com.example.changecolorandsize;
+import androidx.appcompat.app.AppCompatActivity;
+import android.graphics.Color;
+import android.os.Bundle;
+import android.widget.TextView;
+public class MainActivity extends AppCompatActivity {
+@Overridea
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+TextView textView1 = findViewById(R.id.textView1);
+textView1.setTextColor(Color.BLUE);
+TextView textView2 = findViewById(R.id.textView2);
+textView2.setTextColor(Color.parseColor("#006400"));
+}
+}
+Slip no.4/8/16
+Create a Simple Android Application Which Send ―Hello message fromone activitytoanother with help of Button (Use Intent). Activity_main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
+tools:context=".MainActivity">
+<TextView
+android:id="@+id/textView" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="30dp" android:text="First Activity" android:textColor="@color/teal_700" android:textSize="25dp" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintHorizontal_bias="0.498" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+<Button
+android:id="@+id/button1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="30dp" android:text="Start Second Activity" android:textColor="@color/white" android:background="@color/design_default_color_primary" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
+app:layout_constraintTop_toBottomOf="@+id/textView" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+Activity_second.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
+tools:context=".SecondActivity">
+<TextView
+android:id="@+id/textView2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Hello Second Activity" android:textColor="@color/design_default_color_primary" android:textSize="22sp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+Mainactivity.java
+package com.example.intend;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+public class MainActivity extends AppCompatActivity {
+private Button button;
+@Override
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+button = findViewById(R.id.button1);
+button.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+openSecondActivity();
+}
+});
+}
+public void openSecondActivity(){
+Intenti=new Intent( MainActivity.this,SecondActivity.class);
+startActivity(i);
+}
+}
+Secondactivity.java
+package com.example.intend;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+public class SecondActivity extends AppCompatActivity {
+@Override
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_second);
+}
+}
+Slip no.5
+B)
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical" android:paddingBottom="@dimen/activity_vertical_margin" android:paddingLeft="@dimen/activity_horizontal_margin" android:paddingRight="@dimen/activity_horizontal_margin" android:paddingTop="@dimen/activity_vertical_margin"
+tools:context=".MainActivity">
+<LinearLayout
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:orientation="horizontal">
+<ToggleButton
+android:id="@+id/simpleToggleButton1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:checked="false" android:drawablePadding="20dp" android:drawableRight="@drawable/ic_launcher" android:textColor="#000" />
+<ToggleButton
+android:id="@+id/simpleToggleButton2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center_horizontal" android:layout_marginLeft="50dp" android:checked="true" android:drawableLeft="@drawable/ic_launcher"
+android:drawablePadding="20dp" android:textColor="#000" />
+</LinearLayout>
+<Button
+android:id="@+id/submitButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_marginTop="50dp" android:background="#0f0" android:padding="10dp" android:text="Submit" android:textColor="#fff" android:textSize="20sp" android:textStyle="bold" />
+</LinearLayout>
+package example.abhiandriod.togglebuttonexample;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
+import android.widget.ToggleButton;
+public class MainActivity extends AppCompatActivity {
+ToggleButton simpleToggleButton1,simpleToggleButton2;
+Button submit;
+@Override
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+//initiate toggle button's
+simpleToggleButton1 = (ToggleButton) findViewById(R.id.simpleToggleButton1);
+simpleToggleButton2 = (ToggleButton) findViewById(R.id.simpleToggleButton2);
+submit = (Button) findViewById(R.id.submitButton);
+submit.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View view){
+String status = "ToggleButton1 : " + simpleToggleButton1.getText() + "\n" +"ToggleButton2 : " + simpleToggleButton2.getText();
+Toast.makeText(getApplicationContext(),status, Toast.LENGTH_SHORT).show();
+// display the currentstate oftoggle button's
+}
+});
+}
+}
+SlipNo.6
+B]
+package com.example.vetri.formvalidarion;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.google.common.collect.Range;
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+//The view objects
+private EditText editTextName, editTextEmail, editTextPassword;
+private Button buttonSubmit;
+//defining AwesomeValidation object
+private AwesomeValidation awesomeValidation;
+@Override
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+//initializing awesomevalidation object
+/*
+* The library provides 3 types of validation
+* BASIC
+* COLORATION
+*UNDERLABEL
+* */
+awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+//initializing view objects
+editTextName = (EditText)findViewById(R.id.editTextName);
+editTextEmail = (EditText)findViewById(R.id.editTextEmail);
+editTextPassword = (EditText)findViewById(R.id.editTextPassword);
+buttonSubmit = (Button)findViewById(R.id.buttonSubmit);
+//adding validation to edittexts
+awesomeValidation.addValidation(this, R.id.editTextName, "^[A-Za- z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.nameerror);
+awesomeValidation.addValidation(this, R.id.editTextEmail, Patterns.EMAIL_ADDRESS, R.string.emailerror);
+awesomeValidation.addValidation(this, R.id.editTextPassword, "^[A-Za- z\\s]{1,}[\\.]{0,1}[A-Za-z\\s]{0,}$", R.string.passworderror);
+buttonSubmit.setOnClickListener(this);
+}
+private void submitForm(){
+//first validate the form then move ahead
+//ifthis becomestrue that means validation issuccessfull
+if(awesomeValidation.validate()){
+Toast.makeText(this, "Registration Successfull", Toast.LENGTH_LONG).show();
+//processthe data further
+}
+}
+@Override
+public void onClick(View view){
+if(view == buttonSubmit){
+submitForm();
+}
+}
+}
+SlipNo.7
+B) By using Spinner, Buttons. Write a Android programto draw followingGUI. <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent" android:orientation="vertical"
+tools:context=".MainActivity">
+<LinearLayout
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="5dp">
+<TextView
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Enteritem:" android:textSize="20dp" android:layout_marginLeft="5dp"/>
+<EditText
+android:id="@+id/enterItem" android:layout_width="300dp" android:layout_height="40dp" android:textSize="20dp" android:background="#5676" android:layout_marginLeft="3dp"/>
+</LinearLayout>
+<LinearLayout
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="5dp">
+<Button
+android:id="@+id/btnAdd" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Add to spinner" android:layout_marginLeft="10dp" />
+<Button
+android:id="@+id/btnRemove" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginLeft="10dp" android:text="Remove fromspinner" />
+</LinearLayout>
+<TextView
+android:layout_width="match_parent" android:layout_height="wrap_content" android:text="See Response Below: " android:textSize="20dp" />
+<Spinner
+android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/spinner" android:scrollbarSize="10dp"/>
+</LinearLayout>
+package com.example.spinner;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.Toast;
+importjava.util.ArrayList;
+public class MainActivity extends AppCompatActivity {
+Spinnerspin;
+EditText entrItem;
+Button add,remove;
+ArrayList datalist;
+@Override
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+spin=findViewById(R.id.spinner);
+entrItem=findViewById(R.id.enterItem);
+add=findViewById(R.id.btnAdd);
+remove=findViewById(R.id.btnRemove);
+datalist=new ArrayList();
+ArrayAdapter adapter=new ArrayAdapter(MainActivity.this, android.R.layout.simple_spinner_item,datalist);
+spin.setAdapter(adapter);
+add.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+if (entrItem.length()==0){
+Toast.makeText(MainActivity.this,"Please Enter
+something",Toast.LENGTH_SHORT).show();
+}
+datalist.add(entrItem.getText().toString());
+Toast.makeText(MainActivity.this,"Added !",Toast.LENGTH_SHORT).show();
+}
+});
+remove.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+if (entrItem.length()==0){
+Toast.makeText(MainActivity.this,"Please Enter
+something",Toast.LENGTH_SHORT).show();
+}
+datalist.remove(entrItem.getText().toString());
+Toast.makeText(MainActivity.this,"Deleted !",Toast.LENGTH_SHORT).show();
+}
+});
+}
+}
+SlipNo.9
+B) Write an Android Application to demonstrate Alert Dialog Box. <?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
+tools:context=".MainActivity">
+<Button
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:id="@+id/button" android:text="Close App" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+package com.example.alertdialog;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+Button closeButton;
+AlertDialog.Builder builder;
+@Override
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+closeButton = (Button) findViewById(R.id.button);
+builder = new AlertDialog.Builder(this);
+closeButton.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+builder.setMessage(R.string.dialog_message).setTitle(R.string.dialog_title);
+builder.setMessage("Do you wantto close this application ?")
+.setCancelable(false)
+.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+@Override
+public void onClick(DialogInterface dialog, int which){
+finish();
+Toast.makeText(getApplicationContext(),"you choose yes actionfor
+alertbox",Toast.LENGTH_SHORT).show();
+}
+})
+.setNegativeButton("No", new DialogInterface.OnClickListener(){
+@Override
+public void onClick(DialogInterface dialog, int which){
+dialog.cancel();
+Toast.makeText(getApplicationContext(),"you choose no actionfor
+alertbox",Toast.LENGTH_SHORT).show();
+}
+});
+AlertDialog alert = builder.create();
+alert.setTitle("AlertDialogExample");
+alert.show(); } }); } }
+Slip no.16
+Create an Android application which will ask the userto input his name and amessage, display the two items concatenated in a label, and change the format ofthe label usingradio buttons and check boxesforselection,the user canmake the labeltext bold, underlined oritalic and change its color.include buttonsto display themessageinthelabel, clearthe text boxes and label and then exit. <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
+tools:context=".MainActivity" android:orientation="vertical" >
+<TextView
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="center" android:layout_marginTop="10dp" android:text="Employee Registration Form" android:textColor="@color/colorPrimaryDark" android:textSize="20dp" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintLeft_toLeftOf="parent" app:layout_constraintRight_toRightOf="parent" app:layout_constraintTop_toTopOf="parent" />
+<View
+android:layout_width="400dp" android:layout_height="1dp" android:background="#ACA1A1" android:layout_gravity="center" android:layout_marginTop="2dp"/>
+<LinearLayout
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="5dp">
+<TextView
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="UserName:" android:textSize="20dp" android:layout_marginLeft="5dp"/>
+<EditText
+android:id="@+id/userName" android:layout_width="300dp" android:layout_height="40dp" android:textSize="20dp" android:background="#5676" android:hint="EnterUsername.." android:layout_marginLeft="3dp"/>
+</LinearLayout>
+<TextView
+android:id="@+id/userAlert" android:layout_width="match_parent" android:layout_height="wrap_content" android:gravity="center" android:textColor="#B71C1C"/>
+<LinearLayout
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="5dp">
+<TextView
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Password:" android:textSize="20dp" android:layout_marginLeft="5dp" />
+<EditText
+android:id="@+id/userPassword" android:layout_width="300dp" android:layout_height="40dp" android:textSize="20dp" android:background="#5676" android:hint="Enter Password.." android:layout_marginLeft="13dp" android:inputType="textPassword" />
+</LinearLayout>
+<LinearLayout
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="5dp">
+<TextView
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Contact:" android:textSize="20dp" android:layout_marginLeft="5dp" />
+<EditText
+android:id="@+id/userContact" android:layout_width="300dp" android:layout_height="40dp" android:textSize="20dp" android:background="#5676" android:hint="Enter ContactNo.." android:layout_marginLeft="32dp" android:inputType="number" />
+</LinearLayout>
+<RadioGroup
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content" android:text="Gender" android:textSize="20dp" android:layout_marginRight="35dp" android:layout_marginLeft="5dp"/>
+<RadioButton
+android:id="@+id/Male" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Male" android:gravity="center" android:textSize="20dp"/>
+<RadioButton
+android:id="@+id/Female" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Female" android:gravity="center" android:textSize="20dp"/>
+</RadioGroup>
+<RadioGroup
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+<TextView
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="20dp" android:text="Skills" android:layout_marginRight="53dp" android:layout_marginLeft="5dp"/>
+<CheckBox
+android:id="@+id/HTML" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="HTML" android:textSize="20dp"/>
+<CheckBox
+android:id="@+id/CSS" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="CSS" android:textSize="20dp"/>
+<CheckBox
+android:id="@+id/PHP" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="PHP" android:textSize="20dp"/>
+</RadioGroup>
+<LinearLayout
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+<TextView
+android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Country" android:textSize="20dp" android:layout_marginLeft="5dp"/>
+<Spinner
+android:id="@+id/SpCountry" android:layout_width="300dp" android:layout_height="wrap_content" android:layout_marginLeft="38dp" android:textSize="30dp"/>
+</LinearLayout>
+<LinearLayout
+android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:layout_marginTop="10dp">
+<TextView
+android:layout_width="wrap_content"
+android:layout_height="wrap_content" android:text="Comment" android:textSize="20dp" android:layout_marginLeft="5dp"/>
+<EditText
+android:id="@+id/usercomment" android:layout_width="300dp" android:layout_height="100dp" android:hint="Enter your comments.." android:layout_marginLeft="15dp" android:background="#5676"/>
+</LinearLayout>
+<Button
+android:id="@+id/btnSubmit" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Click To Submit" android:textColor="#F5FBF6" android:background="#B71C1C" android:layout_marginTop="10dp"/>
+</LinearLayout>
+package com.example.registrationform;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
+importjava.util.ArrayList;
+importjava.util.List;
+public class MainActivity extends AppCompatActivity {
+Spinnersp;
+boolean invalid = false;
+String Colector="";
+TextView txtalertName;
+EditTextUserName,UserPassword,UserContact,UserComment;
+Button SubmitSave;
+RadioButton Malebtn,Femalbtn;
+CheckBox html,css,php;
+@Override
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+sp=findViewById(R.id.SpCountry);
+UserName=findViewById(R.id.userName);
+UserPassword=findViewById(R.id.userPassword);
+UserContact=findViewById(R.id.userContact);
+UserComment=findViewById(R.id.usercomment);
+txtalertName=findViewById(R.id.userAlert);
+Malebtn =findViewById(R.id.Male);
+Femalbtn=findViewById(R.id.Female);
+html=findViewById(R.id.HTML);
+css=findViewById(R.id.CSS);
+php=findViewById(R.id.PHP);
+SubmitSave=findViewById(R.id.btnSubmit);
+SubmitSave.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View view){
+String name =UserName.getText().toString();
+String Pascode=UserPassword.getText().toString();
+String contact=UserContact.getText().toString();
+String comment=UserComment.getText().toString();
+if (name.isEmpty()){
+Toast.makeText(MainActivity.this,"Pleasfillthe password
+field",Toast.LENGTH_SHORT).show();
+}
+else if (name.equals("Sanket") ||name.equals("Narsale")){
+invalid=true;
+txtalertName.setText("Name Already exist");
+}
+else if(Pascode.isEmpty()){
+Toast.makeText(MainActivity.this,"Pleasfillthe password
+field",Toast.LENGTH_SHORT).show();
+}
+else if (contact.isEmpty()){
+Toast.makeText(MainActivity.this,"Pleasfillthe Contact
+field",Toast.LENGTH_SHORT).show();
+}
+else if (comment.isEmpty()){
+Toast.makeText(MainActivity.this,"Pleasfillthe Comment
+field",Toast.LENGTH_SHORT).show();
+}
+else{
+Colector+=name+"\n";
+Colector+=Pascode+"\n";
+Colector+=contact+"\n";
+Colector+=comment+"\n";
+if (html.isChecked()){
+Colector+="HTML"+"\n";
+if (css.isChecked()){
+Colector+="CSS"+"\n";
+}
+if (php.isChecked()){
+Colector+="PHP"+"\n";
+}
+}
+Toast.makeText(MainActivity.this,"UserInfo
+\n:"+Colector,Toast.LENGTH_SHORT).show();
+}
+}
+});
+List<String> categoryCountry=new ArrayList<>();
+categoryCountry.add("Select Country");
+categoryCountry.add("INDIA");
+categoryCountry.add("AFGHANISTAN");
+categoryCountry.add("UAE");
+categoryCountry.add("TURKEY");
+categoryCountry.add("AMERICA");
+ArrayAdapter<String> arrayAdapter;
+arrayAdapter=new
+ArrayAdapter<>(this,android.R.layout.simple_spinner_item,categoryCountry);
+arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_i
+tem);
+sp.setAdapter(arrayAdapter);
+sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+@Override
+public void onItemSelected(AdapterView<?> parent, View view, int position, longl){
+if(parent.getItemAtPosition(position).equals("Select Country")){
+//DoNothing
+}
+else{
+String item=parent.getItemAtPosition(position).toString();
+Colector+=item+"\n";
+Toast.makeText(MainActivity.this, "Selected Country: "+item, Toast.LENGTH_SHORT).show();
+}
+}
+@Override
+public void onNothingSelected(AdapterView<?> adapterView){
+}
+});
+}
+}
+Slip no.20
+B)Create the simple calculatorshown below also performappropriate operation<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent" android:layout_height="match_parent"
+tools:context=".MainActivity">
+<EditText
+android:id="@+id/edt1" android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+<Button
+android:id="@+id/button1"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignEnd="@+id/button4" android:layout_alignRight="@+id/button4" android:layout_below="@+id/edt1" android:layout_marginTop="94dp" android:text="1" />
+<Button
+android:id="@+id/button2"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignTop="@+id/button1" android:layout_toLeftOf="@+id/button3" android:layout_toStartOf="@+id/button3" android:text="2" />
+<Button
+android:id="@+id/button3"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignTop="@+id/button2" android:layout_centerHorizontal="true" android:text="3" />
+<Button
+android:id="@+id/button4"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/button1" android:layout_toLeftOf="@+id/button2" android:text="4" />
+<Button
+android:id="@+id/button5"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignBottom="@+id/button4" android:layout_alignLeft="@+id/button2" android:layout_alignStart="@+id/button2" android:text="5" />
+<Button
+android:id="@+id/button6"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/button3" android:layout_alignStart="@+id/button3" android:layout_below="@+id/button3" android:text="6" />
+<Button
+android:id="@+id/button7"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/button4" android:layout_toLeftOf="@+id/button2" android:text="7" />
+<Button
+android:id="@+id/button8"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/button5" android:layout_alignStart="@+id/button5" android:layout_below="@+id/button5" android:text="8" />
+<Button
+android:id="@+id/button9"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/button6" android:layout_alignStart="@+id/button6" android:layout_below="@+id/button6" android:text="9" />
+<Button
+android:id="@+id/buttonadd"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignTop="@+id/button3" android:layout_alignParentEnd="true"
+android:layout_alignParentRight="true" android:layout_marginLeft="46dp" android:layout_toRightOf="@+id/button3" android:text="+" />
+<Button
+android:id="@+id/buttonsub"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignEnd="@+id/buttonadd" android:layout_alignLeft="@+id/buttonadd" android:layout_alignRight="@+id/buttonadd" android:layout_alignStart="@+id/buttonadd" android:layout_below="@+id/buttonadd" android:text="-" />
+<Button
+android:id="@+id/buttonmul"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/buttonsub" android:layout_alignParentEnd="true" android:layout_alignParentRight="true" android:layout_alignStart="@+id/buttonsub" android:layout_below="@+id/buttonsub" android:text="*" />
+<Button
+android:id="@+id/button10"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/button7" android:layout_toLeftOf="@+id/button2" android:text="." />
+<Button
+android:id="@+id/button0"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/button8" android:layout_alignStart="@+id/button8" android:layout_below="@+id/button8" android:text="0" />
+<Button
+android:id="@+id/buttonC"
+style="?android:attr/buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignLeft="@+id/button9" android:layout_alignStart="@+id/button9" android:layout_below="@+id/button9" android:text="C" />
+<Button
+android:id="@+id/buttondiv"
+style="?android:buttonStyleSmall" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignEnd="@+id/buttonmul" android:layout_alignLeft="@+id/buttonmul" android:layout_alignRight="@+id/buttonmul" android:layout_alignStart="@+id/buttonmul" android:layout_below="@+id/buttonmul" android:text="/" />
+<Button
+android:id="@+id/buttoneql" android:layout_width="wrap_content" android:layout_height="wrap_content"
+android:layout_alignEnd="@+id/buttondiv" android:layout_alignLeft="@+id/button10" android:layout_alignRight="@+id/buttondiv" android:layout_alignStart="@+id/button10" android:layout_below="@+id/button0" android:layout_marginTop="37dp" android:text="=" />
+</RelativeLayout>
+package com.example.mycalculator;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+public class MainActivity extends AppCompatActivity {
+Button button0, button1, button2, button3, button4, button5, button6, button7, button8, button9, buttonAdd, buttonSub, buttonDivision, buttonMul, button10, buttonC, buttonEqual;
+EditText crunchifyEditText;
+floatmValueOne,mValueTwo;
+boolean crunchifyAddition,mSubtract, crunchifyMultiplication, crunchifyDivision;
+@Override
+protected void onCreate(Bundle savedInstanceState){
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_main);
+button0 = (Button) findViewById(R.id.button0);
+button1 = (Button) findViewById(R.id.button1);
+button2 = (Button) findViewById(R.id.button2);
+button3 = (Button) findViewById(R.id.button3);
+button4 = (Button) findViewById(R.id.button4);
+button5 = (Button) findViewById(R.id.button5);
+button6 = (Button) findViewById(R.id.button6);
+button7 = (Button) findViewById(R.id.button7);
+button8 = (Button) findViewById(R.id.button8);
+button9 = (Button) findViewById(R.id.button9);
+button10 = (Button) findViewById(R.id.button10);
+buttonAdd = (Button) findViewById(R.id.buttonadd);
+buttonSub = (Button) findViewById(R.id.buttonsub);
+buttonMul = (Button) findViewById(R.id.buttonmul);
+buttonDivision = (Button) findViewById(R.id.buttondiv);
+buttonC = (Button) findViewById(R.id.buttonC);
+buttonEqual = (Button) findViewById(R.id.buttoneql);
+crunchifyEditText = (EditText) findViewById(R.id.edt1);
+button1.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "1");
+}
+});
+button2.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "2");
+}
+});
+button3.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "3");
+}
+});
+button4.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "4");
+}
+});
+button5.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "5");
+}
+});
+button6.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "6");
+}
+});
+button7.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "7");
+}
+});
+button8.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "8");
+}
+});
+button9.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "9");
+}
+});
+button0.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + "0");
+}
+});
+buttonAdd.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+if (crunchifyEditText == null){
+crunchifyEditText.setText("");
+} else {
+mValueOne = Float.parseFloat(crunchifyEditText.getText() + "");
+crunchifyAddition = true;
+crunchifyEditText.setText(null);
+}
+}
+});
+buttonSub.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+mValueOne = Float.parseFloat(crunchifyEditText.getText() + "");
+mSubtract = true;
+crunchifyEditText.setText(null);
+}
+});
+buttonMul.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+mValueOne = Float.parseFloat(crunchifyEditText.getText() + "");
+crunchifyMultiplication = true;
+crunchifyEditText.setText(null);
+}
+});
+buttonDivision.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+mValueOne = Float.parseFloat(crunchifyEditText.getText() + "");
+crunchifyDivision = true;
+crunchifyEditText.setText(null);
+}
+});
+buttonEqual.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+mValueTwo = Float.parseFloat(crunchifyEditText.getText() + "");
+if (crunchifyAddition == true){
+crunchifyEditText.setText(mValueOne +mValueTwo + "");
+crunchifyAddition = false;
+}
+if (mSubtract == true){
+crunchifyEditText.setText(mValueOne -mValueTwo + "");
+mSubtract = false;
+}
+if (crunchifyMultiplication == true){
+crunchifyEditText.setText(mValueOne *mValueTwo + "");
+crunchifyMultiplication = false;
+}
+if (crunchifyDivision == true){
+crunchifyEditText.setText(mValueOne /mValueTwo + "");
+crunchifyDivision = false;
+}
+}
+});
+buttonC.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText("");
+}
+});
+button10.setOnClickListener(new View.OnClickListener(){
+@Override
+public void onClick(View v){
+crunchifyEditText.setText(crunchifyEditText.getText() + ".");
+}
+});
+}
+}

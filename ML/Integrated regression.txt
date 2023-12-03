@@ -1,0 +1,16 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+from sklearn import preprocessing
+ir=pd.read_csv('iris.csv')
+ir=ir.drop('Id',axis=1)
+print(ir)
+le=preprocessing.LabelEncoder()
+ir.Species=le.fit_transform(ir.Species)
+x=ir.iloc[:,:-1].values
+print(x)
+y=ir.iloc[:,4].values
+print(y)
+plt.scatter(x[:,0],x[:,3],c=y,cmap='flag')
+plt.xlabel('sepal lenght cm')
+plt.ylabel('petal width cm')
+plt.show()
